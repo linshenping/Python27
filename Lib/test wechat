@@ -1,0 +1,20 @@
+import os
+#os.system('shutdowm -s -t 1')#关机
+#os.system('shutdowm -r')#重启
+import poplib
+import smtplib
+from email.header import decode_header
+from email.mime.text import MIMEText
+import email
+#如何登陆邮箱，为了发送而登陆还是为了读取邮件而登陆
+#为了发送邮件而登陆的操作，一般采用SMTP，接收使用pop
+sent=smtplib.SMTP('smtp.sina.cn')#这一行设置了SMTＰ服务器
+sent.login('19859179307@sina.cn','abcd-1234')#设置独立密码
+#发送邮件
+to=['19859179307@sina.cn','1030547032@qq.com']
+content=MIMEText('How are you?')#MIMEText的参数代表邮件的具体内容
+content=['Subject']='hello'#这里设置了标题
+content=['From']='19859179307@sina.cn'#这里设置了邮件才能够哪里发送
+content=['To']=','.join(to)#每个元素用逗号隔开，邮件要发送的地址，可以群发
+sent.sendmail('19859179307@sina.cn',to,content.as_string())#这一步实现发送邮件，有三个参数，需要注意各自代表什么
+sent.close()
