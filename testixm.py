@@ -55,7 +55,7 @@ class GetIxmApiTest(unittest.TestCase):
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
 
-    # 2.4.1	跨省异地备案列表
+    # 2.4.1	跨省异地备案列表jiekou
     def test_inter_provincial_record_list(self):
         date = {
             "funid": "N07.03.00.01",
