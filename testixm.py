@@ -55,6 +55,23 @@ class GetIxmApiTest(unittest.TestCase):
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
 
+    # 2.4.1	跨省异地备案列表
+    def test_inter_provincial_record_list(self):
+        date = {
+            "funid": "N07.03.00.01",
+            "data": {
+                "uid": "350603199510110019",
+                "page": "1",
+                "rows": "10"
+            }
+        }
+        r = requests.post(url=self.url, json=date)
+        print r.text
+        cause = json.loads(r.text).get('cause')
+        print('cause: {0}'.format(cause))
+        flags = json.loads(r.text).get('flag')
+        print 'flags: {0}'.format(flags)
+        self.assertEqual(flags, u'1')
 
 
 if __name__ == '__main__':
