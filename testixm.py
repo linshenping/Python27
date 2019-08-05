@@ -92,7 +92,7 @@ class GetIxmApiTest(unittest.TestCase):
         self.assertEqual(flags, u'1')
 
     # 机构信息查询
-    def Institutional_information_inquiry(self):
+    def test_institutional_information_inquiry(self):
         date = {
             "funid": "N07.03.00.21",
             "data": {
@@ -108,7 +108,7 @@ class GetIxmApiTest(unittest.TestCase):
         self.assertEqual(flags, u'1')
 
     # 跨省异地备案申请
-    def Inter_provincial_filing_application(self):
+    def test_inter_provincial_filing_application(self):
         date = {
             "funid": "N07.03.00.17",
             "data": {
@@ -134,7 +134,7 @@ class GetIxmApiTest(unittest.TestCase):
         self.assertEqual(flags, u'1')
 
     # 跨省异地备案撤销
-    def Inter_provincial_filing_cancel(self):
+    def test_inter_provincial_filing_cancel(self):
         date = {
             "funid": "N07.03.00.18",
             "data": {
@@ -150,7 +150,7 @@ class GetIxmApiTest(unittest.TestCase):
         self.assertEqual(flags, u'1')
 
     # 跨省异地备案截止
-    def Inter_provincial_filing_cutoff(self):
+    def test_inter_provincial_filing_cutoff(self):
         date = {
             "funid": "N07.03.00.19",
             "data": {
@@ -167,7 +167,7 @@ class GetIxmApiTest(unittest.TestCase):
 
 
     # 跨省异地备案前置校验
-    def Inter_provincial_filing_check(self):
+    def test_inter_provincial_filing_check(self):
         date = {
             "funid": "N07.03.00.20",
             "data": {
@@ -183,7 +183,7 @@ class GetIxmApiTest(unittest.TestCase):
         self.assertEqual(flags, u'1')
 
     # 模糊查找本单位人员姓名jiekou
-    def fuzzy_search(self):
+    def test_fuzzy_search(self):
         date = {
         "funid": "N07.03.00.23",
         "data": {
