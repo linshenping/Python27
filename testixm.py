@@ -182,7 +182,7 @@ class GetIxmApiTest(unittest.TestCase):
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
 
-    # 模糊查找本单位人员姓名
+    # 模糊查找本单位人员姓名jiekou
     def fuzzy_search(self):
         date = {
         "funid": "N07.03.00.23",
