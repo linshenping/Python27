@@ -37,7 +37,7 @@ class GetIxmApiTest(unittest.TestCase):
         print 'refresh_token:{0}'.format(refresh_token)
         self.assertEqual(flags, u'1')
 
-    # 获取参保人信息
+    # 获取参保人信息jiekou
     def test_get_insured_information(self):
         date = {
             "funid": "N06.00.01.02",
