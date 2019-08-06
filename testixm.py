@@ -14,7 +14,6 @@ class GetIxmApiCrossProvinceTest(unittest.TestCase):
 
         self.url = "https://ylbz.ixm.gov.cn/xmyb/api/gafe/rest"
 
-    '''
     # 获取access_token
     def test_get_access_token(self):
         print '#########获取access_token用例执行############'
@@ -246,7 +245,6 @@ class GetIxmApiCrossProvinceTest(unittest.TestCase):
         flags = json.loads(r.text).get('flag')
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
-    '''
 
 class GetIxmApiFixOrganizationTest(unittest.TestCase):
 
