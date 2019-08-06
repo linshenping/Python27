@@ -8,12 +8,13 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-class GetIxmApiTest(unittest.TestCase):
+class GetIxmApiCrossProvinceTest(unittest.TestCase):
 
     def setUp(self):
 
         self.url = "https://ylbz.ixm.gov.cn/xmyb/api/gafe/rest"
 
+    '''
     # 获取access_token
     def test_get_access_token(self):
         print '#########获取access_token用例执行############'
@@ -245,6 +246,291 @@ class GetIxmApiTest(unittest.TestCase):
         flags = json.loads(r.text).get('flag')
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
+    '''
+
+class GetIxmApiFixOrganizationTest(unittest.TestCase):
+
+    def setUp(self):
+            self.url = "https://ylbz.ixm.gov.cn/xmyb/api/gafe/rest"
+
+    # 查询定点机构信息
+    def test_query_fixed_point_organization_informationh(self):
+        print '##########查询定点机构信息用例执行############'
+        date = {
+        "funid": "N07.07.00.01",
+        "data": {
+            "social_credit_code": "913502030511743851",
+            "batch": ""
+                }
+            }
+        r = requests.post(url=self.url, json=date)
+        print r.text
+        cause = json.loads(r.text).get('cause')
+        print('cause: {0}'.format(cause))
+        flags = json.loads(r.text).get('flag')
+        print 'flags: {0}'.format(flags)
+        self.assertEqual(flags, u'1')
+
+    # 定点机构信息新增
+    def test_query_fixed_point_organization_new(self):
+        print '##########定点机构信息新增用例执行############'
+        date = {
+            "funid": "N07.07.00.02",
+            "data": {
+                "apply_type": "01",
+                "org_id": "*",
+                "org_name": "TEST-linsp厦门最美信息科技有限公司",
+                "network_area": "350203",
+                "network_addr": "厦门市思明区海翼大厦厦禾路666",
+                "key_project": "0",
+                "key_project_file_no": "",
+                "key_project_file_name": "",
+                "contacts": "linsp-test",
+                "contacts_certificate_type": "10",
+                "contacts_certificate_no": "1234567890",
+                "contacts_phone": "22222222222",
+                "org_grade": "9",
+                "org_type": "51",
+                "ownership": "0",
+                "operate_nature": "01",
+                "license_key": "222222",
+                "license_key_begin_date": "20190318",
+                "certificate_no": "334343",
+                "certificate_no_begin_date": "20190322",
+                "social_credit_code": "913502030511743851",
+                "business_license": "*",
+                "is_org": "0",
+                "one_apply_date": "",
+                "one_apply_addr": "",
+                "second_apply_date": "",
+                "second_apply_adddr": "",
+                "legal_person": "1",
+                "legal_person_certificate_type": "10",
+                "legal_person_certificate_no": "2222",
+                "legal_person_phone": "23232323",
+                "area": "100",
+                "actual_area": "100",
+                "building_begin_date": "201901",
+                "building_end_date": "201907",
+                "range": "厦门禹州大学城",
+                "main_range": "口腔",
+                "bed_num": "2",
+                "is_punish": "0",
+                "punish_office": "",
+                "punish_date": "",
+                "is_accident": "0",
+                "doctor_num": "5",
+                "senior_num": "1",
+                "intermediate_num": "2",
+                "technician_num": "1",
+                "charge_num": "1",
+                "apply_channel": "02",
+                "street": "厦禾路666",
+                "manage_begin_date": "20190128",
+                "longitude": "118.23122",
+                "latitude": "24.64738"
+
+                    }
+                }
+        r = requests.post(url=self.url, json=date)
+        print r.text
+        cause = json.loads(r.text).get('cause')
+        print('cause: {0}'.format(cause))
+        flags = json.loads(r.text).get('flag')
+        print 'flags: {0}'.format(flags)
+        self.assertEqual(flags, u'1')
+
+    # 定点机构信息修改
+    def test_query_fixed_point_organization_update(self):
+        print '##########定点机构信息修改用例执行############'
+        # 查询获取serial_no和batch参数
+        date_serial = {
+            "funid": "N07.07.00.01",
+            "data": {
+                "social_credit_code": "913502030511743851",
+                "batch": ""
+            }
+        }
+        r = requests.post(url=self.url, json=date_serial)
+        serial_no = r.json()['data'][0]['serial_no']
+        print ('serial_no: {0}').format(serial_no)
+        batch = r.json()['data'][0]['batch']
+        print ('serial_no: {0}').format(batch)
+        # api请求
+        date = {
+            "funid": "N07.07.00.03",
+            "data": {
+                "serial_no": serial_no,
+                "batch": batch,
+                "apply_type": "01",
+                "org_id": "*",
+                "org_name": "TEST-厦门最美信息科技有限公司",
+                "network_area": "350203",
+                "network_addr": "厦门市思明区海翼大厦厦禾路666",
+                "key_project": "0",
+                "key_project_file_no": "",
+                "key_project_file_name": "",
+                "contacts": "linsp-test",
+                "contacts_certificate_type": "10",
+                "contacts_certificate_no": "1234567890",
+                "contacts_phone": "22222222222",
+                "org_grade": "9",
+                "org_type": "51",
+                "ownership": "0",
+                "operate_nature": "01",
+                "license_key": "222222",
+                "license_key_begin_date": "20190318",
+                "certificate_no": "334343",
+                "certificate_no_begin_date": "20190322",
+                "social_credit_code": "913502030511743851",
+                "business_license": "*",
+                "is_org": "0",
+                "one_apply_date": "",
+                "one_apply_addr": "",
+                "second_apply_date": "",
+                "second_apply_adddr": "",
+                "legal_person": "1",
+                "legal_person_certificate_type": "10",
+                "legal_person_certificate_no": "2222",
+                "legal_person_phone": "23232323",
+                "area": "100",
+                "actual_area": "100",
+                "building_begin_date": "201901",
+                "building_end_date": "201907",
+                "range": "厦门禹州大学城",
+                "main_range": "口腔",
+                "bed_num": "2",
+                "is_punish": "0",
+                "punish_office": "",
+                "punish_date": "",
+                "is_accident": "0",
+                "doctor_num": "5",
+                "senior_num": "1",
+                "intermediate_num": "2",
+                "technician_num": "1",
+                "charge_num": "1",
+                "apply_channel": "02",
+                "street": "厦禾路666",
+                "manage_begin_date": "20190128",
+                "longitude": "118.23122",
+                "latitude": "24.64738"
+
+                    }
+                }
+
+        r = requests.post(url=self.url, json=date)
+        print r.text
+        cause = json.loads(r.text).get('cause')
+        print('cause: {0}'.format(cause))
+        flags = json.loads(r.text).get('flag')
+        print 'flags: {0}'.format(flags)
+        self.assertEqual(flags, u'1')
+
+    # 机构定点申请数据撤销
+    def test_query_fixed_point_organization_cancle(self):
+        print '##########机构定点申请数据撤销用例执行############'
+        # 查询获取serial_no参数
+        date_serial = {
+            "funid": "N07.07.00.01",
+            "data": {
+                "social_credit_code": "913502030511743851",
+                "batch": ""
+            }
+        }
+        r = requests.post(url=self.url, json=date_serial)
+        serial_no = r.json()['data'][0]['serial_no']
+        print ('serial_no: {0}').format(serial_no)
+        # api请求
+        date = {
+            "funid": "N07.07.00.04",
+            "data": {
+                "serial_no": serial_no
+                    }
+                }
+        r = requests.post(url=self.url, json=date)
+        print r.text
+        cause = json.loads(r.text).get('cause')
+        print('cause: {0}'.format(cause))
+        flags = json.loads(r.text).get('flag')
+        print 'flags: {0}'.format(flags)
+        self.assertEqual(flags, u'1')
+
+    # 机构定点申请医师信息维护
+    def test_query_fixed_point_doctor_information_add(self):
+        print '##########机构定点申请医师信息维护(新增)用例执行############'
+        # 查询获取serial_no参数
+        date_serial = {
+            "funid": "N07.07.00.01",
+            "data": {
+                "social_credit_code": "913502030511743851",
+                "batch": ""
+            }
+        }
+        r = requests.post(url=self.url, json=date_serial)
+        serial_no = r.json()['data'][0]['serial_no']
+        print ('serial_no: {0}').format(serial_no)
+        # api请求
+        date = {
+            "funid": "N07.07.00.05",
+            "data": {
+                "serial_no": serial_no,
+                "type": "1",
+                "doctor_list": {
+                    "biz_serial_no": "",
+                    "people_type": "01",
+                    "certificate_grade": "01",
+                    "name": "萍萍",
+                    "certificate_type": "10",
+                    "certificate_no": "123454545",
+                    "vocational_qc_no": "7787788",
+                    "technical_qc_no": "2222222",
+                    "title_certificate_no": "44444444",
+                    "title_certificate_authorities": "厦门",
+                    "licensed_pharmacist_qc_no": ""
+                                }
+                    }
+                }
+
+        r = requests.post(url=self.url, json=date)
+        print r.text
+        cause = json.loads(r.text).get('cause')
+        print('cause: {0}'.format(cause))
+        flags = json.loads(r.text).get('flag')
+        print 'flags: {0}'.format(flags)
+        self.assertEqual(flags, u'1')
+
+    # 机构定点申请医师信息查询
+    def test_query_fixed_point_doctor_information(self):
+        print '##########机构定点申请医师信息查询用例执行############'
+        # 查询获取serial_no参数
+        date_serial = {
+            "funid": "N07.07.00.01",
+            "data": {
+                "social_credit_code": "913502030511743851",
+                "batch": ""
+            }
+        }
+        r = requests.post(url=self.url, json=date_serial)
+        serial_no = r.json()['data'][0]['serial_no']
+        print ('serial_no: {0}').format(serial_no)
+        # api请求
+        date = {
+            "funid": "N07.07.00.06",
+            "data": {
+                "serial_no": serial_no,
+                "page": "1",
+                "rows": "10"
+                    }
+                }
+        r = requests.post(url=self.url, json=date)
+        print r.text
+        cause = json.loads(r.text).get('cause')
+        print('cause: {0}'.format(cause))
+        flags = json.loads(r.text).get('flag')
+        print 'flags: {0}'.format(flags)
+        self.assertEqual(flags, u'1')
+
+
 
 if __name__ == '__main__':
     unittest.main()
