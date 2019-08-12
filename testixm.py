@@ -5,6 +5,7 @@ import json
 import unittest
 import os
 import sys
+import time
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -1146,6 +1147,7 @@ class QuanzhouPublicServiceTest(unittest.TestCase):
                 }
         headers = {"Content-Type": "application/json"}
         r = requests.post(url=self.url_area, json=date, headers=headers)
+        forWait(10)
         print r.text
         flags = json.loads(r.text).get('flag')
         print 'flags:{0}'.format(flags)
@@ -1158,7 +1160,7 @@ class FuzhouPublicServiceTest(unittest.TestCase):
     def setUp(self):
         print '##########福州公共服务接口测试############'
         self.url = "https://open.fjylbz.gov.cn/api/gafe/rest?zyregion=350100"
-        self.url_area = "http://qzyb.quanzhou.gov.cn/api/gafe/rest"
+        self.url_area = "http://wx3.fzybzx.com.cn/fzyb/api/gafe/rest"
 
     def test_personal_information(self):
         print '##########个人基本信息用例执行############'
