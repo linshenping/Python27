@@ -882,8 +882,8 @@ class QuanzhouPublicServiceTest(unittest.TestCase):
     def setUp(self):
         print '##########泉州公共服务接口测试############'
         self.url = "https://open.fjylbz.gov.cn/api/gafe/rest?zyregion=350500"
-        self.url_area = 'http://qzyb.quanzhou.gov.cn/api/gafe/rest'
-        self.url_ip = 'http://172.23.1.96/api/gafe/rest'
+        self.url_area = "http://qzyb.quanzhou.gov.cn/api/gafe/rest"
+        self.url_ip = "http://172.23.1.96/api/gafe/rest"
     def test_personal_information(self):
         print '##########个人基本信息用例执行############'
         date = {
