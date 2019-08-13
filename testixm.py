@@ -933,9 +933,7 @@ class QuanzhouPublicServiceTest(unittest.TestCase):
                 }
         headers = {"Content-Type": "application/json"}
         r = requests.post(url=self.url_ip, json=date, headers=headers)
-        print ('请求的url: ' + self.url)
-        print ('请求的参数: ' + date)
-        print ('请求返回参数: ' + r.text)
+        print r.text
         flags = json.loads(r.text).get('flag')
         print 'flags:{0}'.format(flags)
         print(r.status_code, r.reason)
@@ -1149,9 +1147,7 @@ class QuanzhouPublicServiceTest(unittest.TestCase):
                 }
         headers = {"Content-Type": "application/json"}
         r = requests.post(url=self.url_area, json=date, headers=headers)
-        print ('请求的url: ' + self.url)
-        print ('请求的参数: ' + date)
-        print ('请求返回参数: ' + r.text)
+        print r.text
         flags = json.loads(r.text).get('flag')
         print 'flags:{0}'.format(flags)
         print(r.status_code, r.reason)
@@ -1473,9 +1469,7 @@ class NingdePublicServiceTest(unittest.TestCase):
                 }
         headers = {"Content-Type": "application/json"}
         r = requests.post(url=self.url, json=date, headers=headers)
-        print ('请求的url: ' + self.url)
-        print ('请求的参数: {0}'.format(date))
-        print ('请求返回参数: {0}'.format(r.text))
+        print r.text
         flags = json.loads(r.text).get('flag')
         print 'flags:{0}'.format(flags)
         print(r.status_code, r.reason)
