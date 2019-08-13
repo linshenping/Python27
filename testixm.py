@@ -1146,7 +1146,7 @@ class QuanzhouPublicServiceTest(unittest.TestCase):
                     }
                 }
         headers = {"Content-Type": "application/json"}
-        r = requests.post(url=self.url_area, json=date, headers=headers)
+        r = requests.post(url=self.url, json=date, headers=headers)
         print r.text
         flags = json.loads(r.text).get('flag')
         print 'flags:{0}'.format(flags)
