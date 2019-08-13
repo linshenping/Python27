@@ -1147,7 +1147,6 @@ class QuanzhouPublicServiceTest(unittest.TestCase):
                 }
         headers = {"Content-Type": "application/json"}
         r = requests.post(url=self.url_area, json=date, headers=headers)
-        forWait(10)
         print r.text
         flags = json.loads(r.text).get('flag')
         print 'flags:{0}'.format(flags)
@@ -1388,6 +1387,284 @@ class FuzhouPublicServiceTest(unittest.TestCase):
                 "funid": "N07.08.09.02",
                 "data": {
                     "fwwdmc": "福建康佰家大药房连锁一一一店"
+                        }
+                    }
+        headers = {"Content-Type": "application/json"}
+        r_01 = requests.post(url=self.url, json=date_01, headers=headers)
+        print r_01.text
+        flags_01 = json.loads(r_01.text).get('flag')
+        print 'flags_01:{0}'.format(flags)
+        print(r_01.status_code, r_01.reason)
+        self.assertEqual(flags_01, u'1')
+        self.assertEqual(r_01.status_code, 200)
+
+        print '##########定点药店查询 - 模糊查询 用例执行############'
+        date_02 = {
+                "funid": "N07.08.09.02",
+                "data": {
+                    "fwwdmc": "康佰家"
+                        }
+                    }
+        headers = {"Content-Type": "application/json"}
+        r_02 = requests.post(url=self.url, json=date_02, headers=headers)
+        print r_02.text
+        flags_02 = json.loads(r_02.text).get('flag')
+        print 'flags_01:{0}'.format(flags)
+        print(r_02.status_code, r_02.reason)
+        self.assertEqual(flags_02, u'1')
+        self.assertEqual(r_02.status_code, 200)
+
+    def test_drug_and_medical_information(self):
+        print '##########药品和诊疗项目查询用例执行############'
+        date = {
+            "funid": "N07.08.09.06",
+            "data": {
+
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url_area, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+
+class NingdePublicServiceTest(unittest.TestCase):
+
+    def setUp(self):
+        print '##########宁德公共服务接口测试############'
+        self.url = "https://open.fjylbz.gov.cn/api/gafe/rest?zyregion=350900"
+        self.url_area = "http://wx.ybj.ningde.gov.cn:7777/api/gafe/rest"
+
+    def test_personal_information(self):
+        print '##########个人基本信息用例执行############'
+        date = {
+            "funid": "N07.08.03.03",
+            "data": {
+                "ybid": "35222119651012003X "
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url, json=date, headers=headers)
+        print r.text
+        # datas = json.loads(r.text.encode('utf-8')).get('data')
+        # print('datas{0}:'.format(datas))
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+
+    def test_insurance_information(self):
+        print '##########参保信息用例执行############'
+        date = {
+            "funid": "N07.08.03.01",
+            "data": {
+                "ybid": "35222119651012003X "
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+    def test_get_insurance_information(self):
+        print '##########获取参保号用例执行############'
+        date = {
+            "funid": "N07.08.03.02",
+            "data": {
+                "id_card": "35222119651012003X",
+                "name": "毛瑾琳",
+                "cardno": "J01916107"
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url_area, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+
+    def test_payment_information(self):
+        print '##########缴费查询用例执行############'
+        date = {
+            "funid": "N07.08.04.01",
+            "data": {
+                "start_time": "201801",
+                "end_time": "201909",
+                "page": "1",
+                "rows": "50",
+                "ybid": "35222119651012003X "
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+    def test_consume_information(self):
+        print '##########消费查询用例执行############'
+        date = {
+            "funid": "N07.08.05.01",
+            "data": {
+                "consultation_type": "",
+                "start_time": "201701",
+                "end_time": "201909",
+                "page": "1",
+                "rows": "50",
+                "ybid": "35222119651012003X "
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+    def test_list_fees(self):
+        print '##########费用清单用例执行############'
+        date = {
+            "funid": "N07.08.05.02",
+            "data": {
+                "consultation_type": "2",
+                "serial_no": "68413547        "
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+    def test_billing_details(self):
+        print '##########结算明细用例执行############'
+        date = {
+            "funid": "N07.08.05.03",
+            "data": {
+                "consultation_type": "2",
+                "serial_no": "68413547        "
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+    def test_rank_number_query(self):
+        print '##########公共查询 - 等级编号查询 用例执行############'
+        date = {
+            "funid": "N07.08.09.08",
+            "data": {
+
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+    def test_fixed_point_organization_information(self):
+        print '##########定点机构查询 - 等级查询 用例执行############'
+        date = {
+            "funid": "N07.08.09.01",
+            "data": {
+                "wdjbbh": "05"
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+        print '##########定点机构查询 - 等级查询 - 详细查询 用例执行############'
+        date_01 = {
+                "funid": "N07.08.09.01",
+                "data": {
+                    "wdjbbh": "05",
+                    "fwwdmc": "宁德市中医院"
+                        }
+                    }
+        headers = {"Content-Type": "application/json"}
+        r_01 = requests.post(url=self.url, json=date_01, headers=headers)
+        print r_01.text
+        flags_01 = json.loads(r_01.text).get('flag')
+        print 'flags_01:{0}'.format(flags)
+        print(r_01.status_code, r_01.reason)
+        self.assertEqual(flags_01, u'1')
+        self.assertEqual(r_01.status_code, 200)
+
+        print '##########定点机构查询 - 等级查询 - 模糊查询 用例执行############'
+        date_02 = {
+                "funid": "N07.08.09.01",
+                "data": {
+                    "wdjbbh": "01",
+                    "fwwdmc": "中医院"
+                        }
+                    }
+        headers = {"Content-Type": "application/json"}
+        r_02 = requests.post(url=self.url, json=date_02, headers=headers)
+        print r_02.text
+        flags_02 = json.loads(r_02.text).get('flag')
+        print 'flags_01:{0}'.format(flags)
+        print(r_02.status_code, r_02.reason)
+        self.assertEqual(flags_02, u'1')
+        self.assertEqual(r_02.status_code, 200)
+
+    def test_fixed_point_drugstore(self):
+        print '##########定点药店查询 用例执行############'
+        date = {
+            "funid": "N07.08.09.02",
+            "data": {
+
+                    }
+                }
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url=self.url, json=date, headers=headers)
+        print r.text
+        flags = json.loads(r.text).get('flag')
+        print 'flags:{0}'.format(flags)
+        print(r.status_code, r.reason)
+        self.assertEqual(flags, u'1')
+        self.assertEqual(r.status_code, 200)
+
+        print '##########定点药店查询 - 精确查询 用例执行############'
+        date_01 = {
+                "funid": "N07.08.09.02",
+                "data": {
+                    "fwwdmc": "福建康佰家大药房连锁有限公司宁德市八一五店"
                         }
                     }
         headers = {"Content-Type": "application/json"}
