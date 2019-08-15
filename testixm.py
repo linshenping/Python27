@@ -9,8 +9,9 @@ import time
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-'''
+
 class GetIxmApiCrossProvinceTest(unittest.TestCase):
+
 
     def setUp(self):
 
@@ -112,7 +113,7 @@ class GetIxmApiCrossProvinceTest(unittest.TestCase):
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
 
-
+    '''
     # 跨省异地备案申请
     def test_inter_provincial_filing_application(self):
         print '########跨省异地备案申请用例执行############'
@@ -139,7 +140,7 @@ class GetIxmApiCrossProvinceTest(unittest.TestCase):
         flags = json.loads(r.text).get('flag')
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
-
+        '''
     # 2.4.1	跨省异地备案列表查询(个人)
     def test_inter_provincial_record_personal_list(self):
         print '##############跨省异地备案列表查询(个人)用例执行##############'
@@ -161,7 +162,7 @@ class GetIxmApiCrossProvinceTest(unittest.TestCase):
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
 
-
+    '''
     # 跨省异地备案撤销
     def test_inter_provincial_filing_cancel(self):
         print '##########跨省异地备案撤销用例执行############'
@@ -210,7 +211,7 @@ class GetIxmApiCrossProvinceTest(unittest.TestCase):
         flags = json.loads(r.text).get('flag')
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
-
+    '''
 
     # 跨省异地备案前置校验
     def test_inter_provincial_filing_check(self):
@@ -247,6 +248,8 @@ class GetIxmApiCrossProvinceTest(unittest.TestCase):
         flags = json.loads(r.text).get('flag')
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
+
+
 
 class GetIxmApiFixOrganizationTest(unittest.TestCase):
 
@@ -529,8 +532,8 @@ class GetIxmApiFixOrganizationTest(unittest.TestCase):
         flags = json.loads(r.text).get('flag')
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
-'''
 
+'''
 
 class XiamenPublicServiceTest(unittest.TestCase):
 
@@ -1708,6 +1711,8 @@ class NingdePublicServiceTest(unittest.TestCase):
         print(r.status_code, r.reason)
         self.assertEqual(flags, u'1')
         self.assertEqual(r.status_code, 200)
+        
+'''
 
 if __name__ == '__main__':
     unittest.main()
