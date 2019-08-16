@@ -502,6 +502,66 @@ class GetIxmApiFixOrganizationTest(unittest.TestCase):
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
 
+        print '##########机构定点申请医师信息维护(修改)用例执行############'
+        date_01 = {
+            "funid": "N07.07.00.05",
+            "data": {
+                "serial_no": serial_no,
+                "type": "2",
+                "doctor_list": {
+                    "biz_serial_no": "",
+                    "people_type": "01",
+                    "certificate_grade": "01",
+                    "name": "萍萍",
+                    "certificate_type": "10",
+                    "certificate_no": "123454545",
+                    "vocational_qc_no": "7787788",
+                    "technical_qc_no": "2222222",
+                    "title_certificate_no": "44444444",
+                    "title_certificate_authorities": "厦门",
+                    "licensed_pharmacist_qc_no": ""
+                }
+            }
+        }
+
+        r_01 = requests.post(url=self.url, json=date_01)
+        print r_01.text
+        cause_01 = json.loads(r_01.text).get('cause')
+        print('cause: {0}'.format(cause_01))
+        flags_01 = json.loads(r_01.text).get('flag')
+        print 'flags: {0}'.format(flags_01)
+        self.assertEqual(flags_01, u'1')
+
+        print '##########机构定点申请医师信息维护(删除)用例执行############'
+        date_02 = {
+            "funid": "N07.07.00.05",
+            "data": {
+                "serial_no": serial_no,
+                "type": "3",
+                "doctor_list": {
+                    "biz_serial_no": "",
+                    "people_type": "01",
+                    "certificate_grade": "01",
+                    "name": "萍萍",
+                    "certificate_type": "10",
+                    "certificate_no": "123454545",
+                    "vocational_qc_no": "7787788",
+                    "technical_qc_no": "2222222",
+                    "title_certificate_no": "44444444",
+                    "title_certificate_authorities": "厦门",
+                    "licensed_pharmacist_qc_no": ""
+                }
+            }
+        }
+
+        r_02 = requests.post(url=self.url, json=date_02)
+        print r_02.text
+        cause_02 = json.loads(r_02.text).get('cause')
+        print('cause: {0}'.format(cause_02))
+        flags_02 = json.loads(r_02.text).get('flag')
+        print 'flags: {0}'.format(flags_02)
+        self.assertEqual(flags_02, u'1')
+
     # 机构定点申请医师信息查询
     def test_query_fixed_point_doctor_information(self):
         print '##########机构定点申请医师信息查询用例执行############'
@@ -533,9 +593,9 @@ class GetIxmApiFixOrganizationTest(unittest.TestCase):
         print 'flags: {0}'.format(flags)
         self.assertEqual(flags, u'1')
 
-'''
+s
 
-class XiamenPublicServiceTest(unittest.TestCase):
+''' XiamenPublicServiceTest(unittest.TestCase):
 
     def setUp(self):
         print '##########厦门公共服务接口测试############'
